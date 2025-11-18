@@ -1,0 +1,51 @@
+server:
+  port: 9090
+
+spring:
+  application:
+    name: social
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/social?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: 123456
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  # config page start one (default is zero)
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+
+# jwt config
+security:
+  authentication:
+    jwt:
+      base64-secret: "vmAQYNL5dUVxhXl6YljoLbxbsVaWJan7B+a0E5u0jiw6h2fx9AvFqzsV7kGw3xa2FPRS3zPfq+Y1CUfe+VV0Ig=="
+      token-validity-in-seconds: 360000
+
+app:
+  auth:
+    max-failed-attempts: 5
+    lock-duration-minutes: 15
+    reset-token-expiry-minutes: 15
+
+# ---
+# spring:
+#   config:
+#     activate:
+#       on-profile: mssql
+#   datasource:
+#     url: jdbc:sqlserver://L3AL3YHUNTER\MSSQLSERVER01;database=mini_social;encrypt=true;trustServerCertificate=true
+#     username: sa
+#     password: "<PUT_SQL_PASSWORD_HERE>"
+#   jpa:
+#     database-platform: org.hibernate.dialect.SQLServerDialect
+#     hibernate:
+#       ddl-auto: update
+#     show-sql: true
